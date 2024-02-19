@@ -22,14 +22,15 @@ class _FakerApi implements FakerApi {
 
   @override
   Future<UserEntityResponse> getUsers(
-    String quantity,
-    String gender,
-  ) async {
+    int quantity, {
+    String? gender,
+  }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'_quantity': quantity,
       r'_gender': gender,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio

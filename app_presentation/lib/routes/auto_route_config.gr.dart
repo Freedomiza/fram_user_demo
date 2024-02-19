@@ -22,9 +22,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     UserDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<UserDetailRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const UserDetailModule(),
+        child: UserDetailModule(
+          key: args.key,
+          user: args.user,
+        ),
       );
     },
     UsersListRoute.name: (routeData) {
@@ -52,16 +56,40 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [UserDetailModule]
-class UserDetailRoute extends PageRouteInfo<void> {
-  const UserDetailRoute({List<PageRouteInfo>? children})
-      : super(
+class UserDetailRoute extends PageRouteInfo<UserDetailRouteArgs> {
+  UserDetailRoute({
+    Key? key,
+    required User user,
+    List<PageRouteInfo>? children,
+  }) : super(
           UserDetailRoute.name,
+          args: UserDetailRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'UserDetailRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<UserDetailRouteArgs> page =
+      PageInfo<UserDetailRouteArgs>(name);
+}
+
+class UserDetailRouteArgs {
+  const UserDetailRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final Key? key;
+
+  final User user;
+
+  @override
+  String toString() {
+    return 'UserDetailRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for

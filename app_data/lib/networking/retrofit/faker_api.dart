@@ -10,7 +10,7 @@ abstract class FakerApi {
 
   @GET("users")
   Future<UserEntityResponse> getUsers(
-    @Query('_quantity') String quantity,
-    @Query('_gender') String gender,
-  );
+    @Query('_quantity') int quantity, {
+    @Query('_gender') String? gender,
+  });
 }

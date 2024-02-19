@@ -4,6 +4,7 @@ import 'package:app_data/app_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'injectable.dart';
 import 'routes/auto_route_config.dart';
 
 void main() {
@@ -12,6 +13,7 @@ void main() {
 
     // Add more dependencies here before running the app
     await configureDataDependencies();
+    await configureDependencies();
     //run app
     runApp(const MainApp());
   }, (error, stack) {
