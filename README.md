@@ -1,10 +1,14 @@
 # Please run this command before run the app
 
-`.\run_app get`
+`.\get_app get`
 
 ## To run the demo app
 
 ### 1. you can run this command
+
+`.\run_app`
+
+or
 
 `cd app_presentation && flutter run`
 
