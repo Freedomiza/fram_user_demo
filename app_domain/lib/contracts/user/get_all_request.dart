@@ -21,20 +21,20 @@ class GetAllUserRequest {
 }
 
 @JsonSerializable()
-class GetAllUserResult {
+class GetAllUserResponse {
   int totalCount;
   int pageSize;
   int pageNumber;
   List<User> users;
 
-  GetAllUserResult({
+  GetAllUserResponse({
     required this.totalCount,
     required this.pageSize,
     required this.pageNumber,
     this.users = const [],
   });
 
-  factory GetAllUserResult.fromJson(Map<String, dynamic> json) =>
-      _$GetAllUserResultFromJson(json);
-  Map<String, dynamic> toJson() => _$GetAllUserResultToJson(this);
+  factory GetAllUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetAllUserResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$GetAllUserResponseToJson(this);
 }

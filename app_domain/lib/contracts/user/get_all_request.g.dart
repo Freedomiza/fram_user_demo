@@ -20,8 +20,8 @@ Map<String, dynamic> _$GetAllUserRequestToJson(GetAllUserRequest instance) =>
       'searchText': instance.searchText,
     };
 
-GetAllUserResult _$GetAllUserResultFromJson(Map<String, dynamic> json) =>
-    GetAllUserResult(
+GetAllUserResponse _$GetAllUserResponseFromJson(Map<String, dynamic> json) =>
+    GetAllUserResponse(
       totalCount: json['totalCount'] as int,
       pageSize: json['pageSize'] as int,
       pageNumber: json['pageNumber'] as int,
@@ -31,7 +31,7 @@ GetAllUserResult _$GetAllUserResultFromJson(Map<String, dynamic> json) =>
           const [],
     );
 
-Map<String, dynamic> _$GetAllUserResultToJson(GetAllUserResult instance) =>
+Map<String, dynamic> _$GetAllUserResponseToJson(GetAllUserResponse instance) =>
     <String, dynamic>{
       'totalCount': instance.totalCount,
       'pageSize': instance.pageSize,
