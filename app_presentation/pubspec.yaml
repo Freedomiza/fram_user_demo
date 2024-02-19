@@ -19,13 +19,14 @@ dependencies:
     path: ../app_domain
   app_data:
     path: ../app_data
+  auto_route: ^7.8.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
   build_runner: any
-  auto_route_generator: any
+  auto_route_generator: ^7.3.2
   retrofit_generator: ">=7.0.0 <8.0.0"
 
 flutter:

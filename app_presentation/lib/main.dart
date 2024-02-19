@@ -1,7 +1,24 @@
+import 'dart:async';
+
+import 'package:app_data/app_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'routes/auto_route_config.dart';
 
 void main() {
-  runApp(const MainApp());
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+    // Add more dependencies here before running the app
+    await configureDataDependencies();
+    //run app
+    runApp(const MainApp());
+  }, (error, stack) {
+    // Can add firebase log here
+    print(error);
+    print(stack);
+  });
 }
 
 class MainApp extends StatelessWidget {
@@ -9,11 +26,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    final appRouter = AppRouter();
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: appRouter.config(),
       ),
     );
   }
