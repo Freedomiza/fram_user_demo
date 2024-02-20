@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:app_domain/repositories/user_data_service.dart';
+import 'package:app_domain/usecases/get_all_users_uc.dart';
 import 'package:get_it/get_it.dart' show GetIt;
 import 'package:injectable/injectable.dart';
 
@@ -12,3 +14,8 @@ final getIt = GetIt.instance;
   asExtension: false, // default  / default/ default
 )
 FutureOr<GetIt> configureDependencies() => init(getIt);
+
+Future<void> configureUseCaseDependencies() async {
+  getIt.registerFactory<GetAllUsersUC>(
+      () => GetAllUsersUC(getIt<UserDataService>()));
+}

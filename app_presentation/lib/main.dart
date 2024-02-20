@@ -13,7 +13,9 @@ void main() {
 
     // Add more dependencies here before running the app
     await configureDataDependencies();
+    await configureUseCaseDependencies();
     await configureDependencies();
+
     //run app
     runApp(const MainApp());
   }, (error, stack) {
