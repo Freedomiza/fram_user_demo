@@ -3,6 +3,8 @@ import 'package:app_data/networking/app_dio.dart';
 import 'package:app_data/networking/retrofit/faker_api.dart';
 import 'package:app_domain/repositories/log_service.dart';
 
+import '../entity/faker_api/people_response/people_response.dart';
+
 class ServiceManager {
   static ServiceManager? _singleton;
 
@@ -64,5 +66,38 @@ class ServiceManager {
 
     // Construct a 'paginated' response
     return data.copyWith(data: paginatedUsers);
+  }
+
+  // TODO: add pagination later
+  PeopleEntityResponse? _cachedPersonData;
+  Future<PeopleEntityResponse> getAllPeople({
+    required int pageSize,
+    required int pageNumber,
+  }) async {
+    PeopleEntityResponse? data;
+    if (_cachedPersonData != null) {
+      data = _cachedPersonData;
+    } else {
+      data = await fakerApi.getPeople(
+        _maxSize,
+      );
+      _cachedPersonData = data;
+    }
+    var people = data!.data ?? [];
+
+    // Pagination Logic
+    int startIndex = (pageNumber) * pageSize;
+    int endIndex = startIndex + pageSize;
+    endIndex = endIndex > people.length
+        ? people.length
+        : endIndex; // Prevent out-of-bounds
+    if (startIndex > people.length) {
+      return data.copyWith(data: []);
+    }
+
+    var paginatedPeople = people.sublist(startIndex, endIndex);
+
+    // Construct a 'paginated' response
+    return data.copyWith(data: paginatedPeople);
   }
 }

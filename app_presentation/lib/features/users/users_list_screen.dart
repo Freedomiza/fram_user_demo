@@ -1,10 +1,10 @@
+import 'package:app_domain/contracts/person/person.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:faker_fram/features/users/cubit/users_cubit.dart';
 import 'package:faker_fram/routes/auto_route_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:app_domain/contracts/user/user.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/user_list_item.dart';
@@ -20,7 +20,7 @@ class UsersListScreen extends StatefulWidget {
 
 class _UsersListScreenState extends State<UsersListScreen> {
   final ScrollController scrollController = ScrollController();
-  final PagingController<int, User> _pagingController =
+  final PagingController<int, Person> _pagingController =
       PagingController(firstPageKey: 0);
   static const _pageSize = 20;
   UsersCubit get usersCubit => BlocProvider.of<UsersCubit>(context);
@@ -53,7 +53,7 @@ class _UsersListScreenState extends State<UsersListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Users'),
+        title: const Text('People'),
       ),
       body: PrimaryScrollController(
         controller: scrollController,
@@ -61,10 +61,10 @@ class _UsersListScreenState extends State<UsersListScreen> {
           onRefresh: () async {
             _refreshPage();
           },
-          child: PagedListView<int, User>(
+          child: PagedListView<int, Person>(
             scrollController: scrollController,
             pagingController: _pagingController,
-            builderDelegate: PagedChildBuilderDelegate<User>(
+            builderDelegate: PagedChildBuilderDelegate<Person>(
               itemBuilder: (context, item, index) => UserListItem(
                 user: item,
                 onPress: () {
@@ -84,10 +84,9 @@ class _UsersListScreenState extends State<UsersListScreen> {
   }
 
   void onUserPressed(
-    User item,
+    Person item,
   ) {
-    print(item);
-    context.router.navigate(UserDetailRoute(user: item));
+    context.router.navigate(UserDetailRoute(person: item));
   }
 
   @override

@@ -1,5 +1,5 @@
-import 'package:app_domain/contracts/user/user.dart';
-import 'package:faker_fram/extensions/user_ext.dart';
+import 'package:app_domain/contracts/person/person.dart';
+import 'package:faker_fram/extensions/person_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -8,8 +8,8 @@ import '../../shared/widgets/network_avatar.dart';
 import '../../shared/widgets/row_table.dart';
 
 class UserDetailScreen extends StatefulWidget {
-  final User user;
-  const UserDetailScreen({super.key, required this.user});
+  final Person person;
+  const UserDetailScreen({super.key, required this.person});
 
   @override
   State<UserDetailScreen> createState() => _UserDetailScreenState();
@@ -18,7 +18,7 @@ class UserDetailScreen extends StatefulWidget {
 class _UserDetailScreenState extends State<UserDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    final user = widget.user;
+    final person = widget.person;
     return Scaffold(
       appBar: AppBar(
         title: const Text('User Detail'),
@@ -28,42 +28,46 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           NetworkAvatar(
-            src: user.image ?? '',
+            src: person.image ?? '',
             size: 64.sp,
           ),
           const Gap(20),
           RowTable(
             title: 'Id',
-            value: "${user.id ?? ''}",
+            value: "${person.id ?? ''}",
           ),
           RowTable(
             title: 'Name',
-            value: user.fullName,
+            value: person.fullName,
           ),
           RowTable(
-            title: 'User name',
-            value: user.username ?? '',
+            title: 'DOB',
+            value: person.birthday ?? '',
+          ),
+          RowTable(
+            title: 'Gender',
+            value: person.gender ?? '',
           ),
           RowTable(
             title: 'Email',
-            value: user.email ?? '',
+            value: person.email ?? '',
           ),
           RowTable(
             title: 'Website',
-            value: user.website ?? '',
+            value: person.website ?? '',
           ),
           RowTable(
-            title: 'IP',
-            value: user.ip ?? '',
+            title: 'Address',
+            value: person.address?.street ?? '',
           ),
-          RowTable(
-            title: 'Mac Address',
-            value: user.macAddress ?? '',
-          ),
-          const RowTable(
-            title: 'Password',
-            value: '********',
-          ),
+          // RowTable(
+          //   title: 'Mac Address',
+          //   value: user.macAddress ?? '',
+          // ),
+          // const RowTable(
+          //   title: 'Password',
+          //   value: '********',
+          // ),
         ],
       )),
     );

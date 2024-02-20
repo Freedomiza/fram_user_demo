@@ -1,12 +1,11 @@
-import 'package:app_domain/contracts/user/user.dart';
-import 'package:faker_fram/extensions/user_ext.dart';
+import 'package:app_domain/contracts/person/person.dart';
+import 'package:faker_fram/extensions/person_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../shared/widgets/network_avatar.dart';
 
 class UserListItem extends StatelessWidget {
-  final User user;
+  final Person user;
   final VoidCallback? onPress;
 
   const UserListItem({

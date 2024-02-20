@@ -27,7 +27,7 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: UserDetailModule(
           key: args.key,
-          user: args.user,
+          person: args.person,
         ),
       );
     },
@@ -59,13 +59,13 @@ class HomeRoute extends PageRouteInfo<void> {
 class UserDetailRoute extends PageRouteInfo<UserDetailRouteArgs> {
   UserDetailRoute({
     Key? key,
-    required User user,
+    required Person person,
     List<PageRouteInfo>? children,
   }) : super(
           UserDetailRoute.name,
           args: UserDetailRouteArgs(
             key: key,
-            user: user,
+            person: person,
           ),
           initialChildren: children,
         );
@@ -79,16 +79,16 @@ class UserDetailRoute extends PageRouteInfo<UserDetailRouteArgs> {
 class UserDetailRouteArgs {
   const UserDetailRouteArgs({
     this.key,
-    required this.user,
+    required this.person,
   });
 
   final Key? key;
 
-  final User user;
+  final Person person;
 
   @override
   String toString() {
-    return 'UserDetailRouteArgs{key: $key, user: $user}';
+    return 'UserDetailRouteArgs{key: $key, person: $person}';
   }
 }
 
